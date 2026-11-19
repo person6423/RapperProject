@@ -3,7 +3,7 @@ local Chart = require "source.gameplay.Chart"
 ImagesChartIcons = nil
 
 function love.load()
-    love.graphics.setDefaultFilter("nearest", "nearest")
+    love.graphics.setDefaultFilter("linear", "linear")
 
     ImagesChartIcons = love.graphics.newImage("assets/images/ChartIcons.png")
 
