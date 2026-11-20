@@ -2,10 +2,6 @@ local AssetLib = require "PersonsLoveLib.AssetLib"
 
 local Chart = {}
 
-ChartIconSize = 48
-ChartLength = 16
-ChartXPosition, ChartYPosition = (1280 - (ChartIconSize * ChartLength)) / 2, 30
-
 function Chart.getChartIconPixelX(ChartTileX)
     return ChartXPosition + (ChartTileX * ChartIconSize)
 end

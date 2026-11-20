@@ -1,7 +1,5 @@
 local Rapper = {}
 
-PlayerPosX = ChartXPosition - ChartIconSize
-
 function Rapper.draw()
     love.graphics.draw(ImagesRapperIcons, PlayerPosX, ChartYPosition)
 end

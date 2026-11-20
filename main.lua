@@ -1,5 +1,11 @@
 ImagesChartIcons = nil
 
+ChartIconSize = 48
+ChartLength = 16
+ChartXPosition, ChartYPosition = (1280 - (ChartIconSize * ChartLength)) / 2, 30
+
+PlayerPosX = -ChartIconSize
+
 function love.load()
     love.graphics.setDefaultFilter("linear", "linear")
 
