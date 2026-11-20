@@ -1,6 +1,3 @@
-local Chart = require "source.gameplay.Chart"
-local Rapper = require "source.gameplay.Rapper"
-
 ImagesChartIcons = nil
 
 function love.load()
@@ -9,7 +6,8 @@ function love.load()
     ImagesChartIcons = love.graphics.newImage("assets/images/ChartIcons.png")
     ImagesRapperIcons = love.graphics.newImage("assets/images/RapperIcons.png")
 
-    Chart.setChartPosition()
+    Chart = require "source.gameplay.Chart"
+    Rapper = require "source.gameplay.Rapper"
 end
 
 function love.draw()

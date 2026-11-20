@@ -2,29 +2,26 @@ local AssetLib = require "PersonsLoveLib.AssetLib"
 
 local Chart = {}
 
-ChartScale = 1
 ChartIconSize = 48
-ChartXPosition, ChartYPosition = nil, nil
+ChartLength = 16
+ChartXPosition, ChartYPosition = (1280 - (ChartIconSize * ChartLength)) / 2, 30
 
-function Chart.setChartPosition()
-    ChartXPosition = (1280 - (ChartIconSize * ChartScale * 18)) / 2
-    ChartYPosition = 30
+function Chart.getChartIconPixelX(ChartTileX)
+    return ChartXPosition + (ChartTileX * ChartIconSize)
 end
 
 function Chart.draw()
     local chartIconsSliced = AssetLib.sliceSheet(ImagesChartIcons, ChartIconSize, ChartIconSize)
 
-    for i = 0, 17 do
+    for i = 0, ChartLength - 1 do
         local ClipToUse = chartIconsSliced[7]
-        if (i - 2) % 4 == 0 then
+        if (i) % 4 == 0 then
             ClipToUse = chartIconsSliced[8]
         end
-        love.graphics.draw(ImagesChartIcons, ClipToUse, ChartXPosition + i * ChartIconSize * ChartScale, ChartYPosition, 0, ChartScale, ChartScale)
+        love.graphics.draw(ImagesChartIcons, ClipToUse, Chart.getChartIconPixelX(i), ChartYPosition)
     end
 
-    for i = 0, 5 do
-        love.graphics.draw(ImagesChartIcons, chartIconsSliced[i + 1], ChartXPosition + (i * 3) * ChartIconSize * ChartScale, ChartYPosition, 0, ChartScale, ChartScale)
-    end
+    love.graphics.draw(ImagesChartIcons, chartIconsSliced[1], Chart.getChartIconPixelX(0), ChartYPosition)
 end
 
 return Chart
