@@ -3,7 +3,7 @@ local Rapper = {}
 PlayerPosX = ChartXPosition - ChartIconSize
 
 function Rapper.draw()
-    love.graphics.draw(ImagesRapperIcons, PlayerPosX, ChartYPosition, 0, ChartScale, ChartScale)
+    love.graphics.draw(ImagesRapperIcons, PlayerPosX, ChartYPosition)
 end
 
 function Rapper.update(dt)
