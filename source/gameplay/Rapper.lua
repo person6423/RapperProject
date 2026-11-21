@@ -7,11 +7,15 @@ function Rapper.draw()
 end
 
 function Rapper.update(dt)
+    local oldChartBar = ChartBar
     local songTime = MusicTrack:tell("seconds")
     local beat = songTime * BPM / 60
-    local bar = math.floor(beat / 4)
+    ChartBar = math.floor(beat / 4)
     local barProgress = (beat % 4) / 4
-    ChartBar = bar % 6
+
+    if oldChartBar ~= ChartBar then
+        Chart.refreshChart()
+    end
 
     PlayerPosX = ChartXPosition + barProgress * (ChartIconSize * ChartLength)
 end

@@ -4,6 +4,7 @@ MusicTrack = nil
 ChartIconSize = 48
 ChartLength = 16
 ChartXPosition, ChartYPosition = (1280 - (ChartIconSize * ChartLength)) / 2, 30
+ChartButtons = {}
 ChartBar = 0
 
 PlayerPosX = ChartXPosition
@@ -21,15 +22,18 @@ function love.load()
     ChartButton = require "source.gameplay.ChartButton"
     Rapper = require "source.gameplay.Rapper"
 
+    Chart.refreshChart()
+
     MusicTrack:play()
 end
 
 function love.draw()
     Chart.draw()
-    ChartButton.draw()
+    for _, i in ipairs(ChartButtons) do i:draw() end
     Rapper.draw()
 end
 
 function love.update(dt)
+    for _, i in ipairs(ChartButtons) do i:update(dt) end
     Rapper.update(dt)
 end

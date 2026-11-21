@@ -6,6 +6,16 @@ function Chart.getChartIconPixelX(ChartTileX)
     return ChartXPosition + (ChartTileX * ChartIconSize)
 end
 
+function Chart.refreshChart()
+    for i = #ChartButtons, 1, -1 do
+        table.remove(ChartButtons, i)
+    end
+
+    table.insert(ChartButtons, ChartButton.new(math.random(1, 6), 4))
+    table.insert(ChartButtons, ChartButton.new(math.random(1, 6), 8))
+    table.insert(ChartButtons, ChartButton.new(math.random(1, 6), 12))
+end
+
 function Chart.draw()
     local chartIconsSliced = AssetLib.sliceSheet(ImagesChartIcons, ChartIconSize, ChartIconSize)
 
