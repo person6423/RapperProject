@@ -5,7 +5,7 @@ function Rapper.draw()
 end
 
 function Rapper.update(dt)
-    PlayerPosX = PlayerPosX + 4.3
+    PlayerPosX = PlayerPosX + 4.3575
     if PlayerPosX > ChartXPosition + ChartIconSize * ChartLength then
         PlayerPosX = ChartXPosition
         ChartBar = ChartBar + 1
