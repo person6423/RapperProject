@@ -1,3 +1,5 @@
+local BPM = 102
+
 local Rapper = {}
 
 function Rapper.draw()
@@ -5,14 +7,13 @@ function Rapper.draw()
 end
 
 function Rapper.update(dt)
-    PlayerPosX = PlayerPosX + 4.3575
-    if PlayerPosX > ChartXPosition + ChartIconSize * ChartLength then
-        PlayerPosX = ChartXPosition
-        ChartBar = ChartBar + 1
-        if ChartBar > 5 then
-            ChartBar = 0
-        end
-    end
+    local songTime = MusicTrack:tell("seconds")
+    local beat = songTime * BPM / 60
+    local bar = math.floor(beat / 4)
+    local barProgress = (beat % 4) / 4
+    ChartBar = bar % 6
+
+    PlayerPosX = ChartXPosition + barProgress * (ChartIconSize * ChartLength)
 end
 
 return Rapper

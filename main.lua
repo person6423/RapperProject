@@ -25,6 +25,7 @@ function love.load()
     MusicTrack:setLooping(true)
 
     Chart = require "source.gameplay.Chart"
+    ChartButton = require "source.gameplay.ChartButton"
     Rapper = require "source.gameplay.Rapper"
 
     love.timer.sleep(2)
@@ -35,6 +36,7 @@ end
 function love.draw()
     if GamePlaying == false then return end
     Chart.draw()
+    ChartButton.draw()
     Rapper.draw()
 end
 

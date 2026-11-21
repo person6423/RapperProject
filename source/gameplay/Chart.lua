@@ -16,8 +16,6 @@ function Chart.draw()
         end
         love.graphics.draw(ImagesChartIcons, ClipToUse, Chart.getChartIconPixelX(i), ChartYPosition)
     end
-
-    love.graphics.draw(ImagesChartIcons, chartIconsSliced[ChartBar + 1], Chart.getChartIconPixelX(8), ChartYPosition)
 end
 
 return Chart
