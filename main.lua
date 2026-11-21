@@ -1,19 +1,12 @@
 ImagesChartIcons = nil
 MusicTrack = nil
 
-GamePlaying = false
-
 ChartIconSize = 48
 ChartLength = 16
 ChartXPosition, ChartYPosition = (1280 - (ChartIconSize * ChartLength)) / 2, 30
 ChartBar = 0
 
 PlayerPosX = ChartXPosition
-
-local function startGame()
-    GamePlaying = true
-    MusicTrack:play()
-end
 
 function love.load()
     love.graphics.setDefaultFilter("linear", "linear")
@@ -28,19 +21,15 @@ function love.load()
     ChartButton = require "source.gameplay.ChartButton"
     Rapper = require "source.gameplay.Rapper"
 
-    love.timer.sleep(2)
-
-    startGame()
+    MusicTrack:play()
 end
 
 function love.draw()
-    if GamePlaying == false then return end
     Chart.draw()
     ChartButton.draw()
     Rapper.draw()
 end
 
 function love.update(dt)
-    if GamePlaying == false then return end
     Rapper.update(dt)
 end
