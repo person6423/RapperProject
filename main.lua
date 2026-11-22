@@ -1,4 +1,4 @@
-local flux = require "flux"
+local flux = require "libraries.flux"
 
 TargetFPS = 60
 

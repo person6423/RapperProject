@@ -1,4 +1,4 @@
-local AssetLib = require "PersonsLoveLib.AssetLib"
+local AssetLib = require "libraries.PersonsLoveLib"
 
 local BPM = 102
 

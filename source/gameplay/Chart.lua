@@ -1,4 +1,4 @@
-local AssetLib = require "PersonsLoveLib.AssetLib"
+local PersonsLoveLib = require "libraries.PersonsLoveLib"
 
 local Chart = {}
 
@@ -20,7 +20,7 @@ function Chart.refreshChart()
 end
 
 function Chart.drawChart(rapper)
-    local chartIconsSliced = AssetLib.sliceSheet(ImagesChartIcons, ChartIconSize, ChartIconSize)
+    local chartIconsSliced = PersonsLoveLib.sliceSheet(ImagesChartIcons, ChartIconSize, ChartIconSize)
     local Yposition = ChartYPosition + (rapper.id - 1) * ChartIconSize
 
     for i = 0, ChartLength - 1 do

@@ -1,5 +1,5 @@
-local AssetLib = require "PersonsLoveLib.AssetLib"
-local flux = require "flux"
+local PersonsLoveLib = require "libraries.PersonsLoveLib"
+local flux = require "libraries.flux"
 
 local ChartButton = {}
 ChartButton.__index = ChartButton
@@ -25,7 +25,7 @@ function ChartButton.newButton(button, tileX)
 end
 
 function ChartButton:draw()
-    local chartIconsSliced = AssetLib.sliceSheet(ImagesChartIcons, ChartIconSize, ChartIconSize)
+    local chartIconsSliced = PersonsLoveLib.sliceSheet(ImagesChartIcons, ChartIconSize, ChartIconSize)
 
     for draws = 1, 2 do
         love.graphics.setColor(self.colour[1], self.colour[2], self.colour[3], self.colour[4])

@@ -1,6 +1,6 @@
-local AssetLib = {}
+local PersonsLoveLib = {}
 
-function AssetLib.sliceSheet(image, fw, fh)
+function PersonsLoveLib.sliceSheet(image, fw, fh)
     local quads = {}
     for y = 0, image:getHeight() - fh, fh do
         for x = 0, image:getWidth() - fw, fw do
@@ -10,4 +10,4 @@ function AssetLib.sliceSheet(image, fw, fh)
     return quads
 end
 
-return AssetLib
+return PersonsLoveLib
