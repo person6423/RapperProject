@@ -25,8 +25,6 @@ function love.load()
     ImagesChartIcons = love.graphics.newImage("assets/images/ChartIcons.png")
     ImagesRapperIcons = love.graphics.newImage("assets/images/RapperIcons.png")
 
-    ImagesChartIcons:setFilter("linear", "nearest")
-
     MusicTrack = love.audio.newSource("assets/music/EverythingIsNothing.wav", "stream")
     MusicTrack:setLooping(true)
 
