@@ -11,6 +11,7 @@ ChartXPosition, ChartYPosition = (1280 - (ChartIconSize * ChartLength)) / 2, 30
 MasterChartButtons = {}
 PlayerChartButtons = {}
 ChartBar = 0
+ChartPlayerButtonsFadeInCounter = -1
 
 MasterRapper = nil
 PlayerRapper = nil
@@ -58,6 +59,9 @@ function love.draw()
 end
 
 function love.update(dt)
+    if ChartPlayerButtonsFadeInCounter > -1 then
+        ChartPlayerButtonsFadeInCounter = ChartPlayerButtonsFadeInCounter + 1
+    end
     for _, i in ipairs(MasterChartButtons) do i:update(dt) end
     for _, i in ipairs(PlayerChartButtons) do i:update(dt) end
     MasterRapper:update(dt)

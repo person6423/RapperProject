@@ -31,8 +31,13 @@ function Rapper:update(dt)
         self.x = ChartXPosition
     end
 
+    if barProgress > 0.75 and ChartPlayerButtonsFadeInCounter == -1 and self.id == 1 then
+        ChartPlayerButtonsFadeInCounter = 0
+    end
+
     if oldChartBar ~= ChartBar then
         if RapperTurn == 2 then
+            ChartPlayerButtonsFadeInCounter = -1
             Chart.refreshChart()
             RapperTurn = 1
         else

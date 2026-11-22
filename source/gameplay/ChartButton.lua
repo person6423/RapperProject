@@ -10,8 +10,8 @@ function ChartButton.newSingleButton(button, tileX, forRapper)
     self.tileX = tileX
     self.posX = Chart.getChartIconPixelX(self.tileX)
     self.pressedTime = -1
-    self.width = 1
-    self.height = 1
+    self.width = 2
+    self.height = 0
     self.scale = 0.75
     self.colour = {1, 1, 1, 0}
     self.additive = 0
@@ -55,13 +55,22 @@ function ChartButton:draw()
 end
 
 function ChartButton:update(dt)
+    if self.forRapper.id == 2 and ChartPlayerButtonsFadeInCounter == 1 then
+        flux.to(self.colour, 0.5, {[4] = 0.75}):ease("sineout")
+        flux.to(self, 0.5, {width = 1, height = 1}):ease("sineout")
+    end
+
     if self.forRapper.x < self.posX or self.pressedTime > -1 then return end
+
     self.pressedTime = self.pressedTime + 1
 
     self.colour = {1, 1, 1, 1}
+    self.width = 1
+    self.height = 1
     self.additive = 1
     self.scale = 1.75
-    flux.to(self, 0.5, {scale = 1, additive = 0}):ease("sineout")
+    flux.to(self, 0.4, {scale = 1, additive = 0}):ease("sineout")
+    flux.to(self, 0.4, {width = -1}):ease("sineinout"):after(self, 0.4, {width = 1}):ease("sineinout")
 end
 
 return ChartButton
