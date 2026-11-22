@@ -14,9 +14,22 @@ function Chart.refreshChart()
         table.remove(PlayerChartButtons, i)
     end
 
-    ChartButton.newButton(math.random(1, 6), 4)
-    ChartButton.newButton(math.random(1, 6), 8)
-    ChartButton.newButton(math.random(1, 6), 12)
+    if ChartBar % 4 == 0 then
+        ChartButton.newButton(1, 0)
+        ChartButton.newButton(2, 2)
+        ChartButton.newButton(3, 4)
+        ChartButton.newButton(4, 6)
+        ChartButton.newButton(5, 8)
+        ChartButton.newButton(6, 11)
+    elseif ChartBar % 4 == 2 then
+        ChartButton.newButton(4, 0)
+        ChartButton.newButton(3, 2)
+        ChartButton.newButton(2, 4)
+        ChartButton.newButton(1, 6)
+        ChartButton.newButton(5, 8)
+        ChartButton.newButton(6, 10)
+        ChartButton.newButton(5, 11)
+    end
 end
 
 function Chart.drawChart(rapper)
