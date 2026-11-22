@@ -7,17 +7,21 @@ function Chart.getChartIconPixelX(ChartTileX)
 end
 
 function Chart.refreshChart()
-    for i = #ChartButtons, 1, -1 do
-        table.remove(ChartButtons, i)
+    for i = #MasterChartButtons, 1, -1 do
+        table.remove(MasterChartButtons, i)
+    end
+    for i = #PlayerChartButtons, 1, -1 do
+        table.remove(PlayerChartButtons, i)
     end
 
-    table.insert(ChartButtons, ChartButton.new(math.random(1, 6), 4))
-    table.insert(ChartButtons, ChartButton.new(math.random(1, 6), 8))
-    table.insert(ChartButtons, ChartButton.new(math.random(1, 6), 12))
+    ChartButton.newButton(math.random(1, 6), 4)
+    ChartButton.newButton(math.random(1, 6), 8)
+    ChartButton.newButton(math.random(1, 6), 12)
 end
 
-function Chart.draw()
+function Chart.drawChart(rapper)
     local chartIconsSliced = AssetLib.sliceSheet(ImagesChartIcons, ChartIconSize, ChartIconSize)
+    local Yposition = ChartYPosition + (rapper.id - 1) * ChartIconSize
 
     for i = 0, ChartLength - 1 do
         local ClipToUse = chartIconsSliced[7]
@@ -26,14 +30,19 @@ function Chart.draw()
             ClipToUse = chartIconsSliced[8]
         end
 
-        love.graphics.draw(ImagesChartIcons, ClipToUse, IconX, ChartYPosition)
+        love.graphics.draw(ImagesChartIcons, ClipToUse, IconX, Yposition)
 
-        if IconX < PlayerPosX then
+        if IconX < rapper.x then
             love.graphics.setBlendMode("add")
-            love.graphics.draw(ImagesChartIcons, ClipToUse, IconX, ChartYPosition)
+            love.graphics.draw(ImagesChartIcons, ClipToUse, IconX, Yposition)
             love.graphics.setBlendMode("alpha")
         end
     end
+end
+
+function Chart.draw()
+    Chart.drawChart(MasterRapper)
+    Chart.drawChart(PlayerRapper)
 end
 
 return Chart

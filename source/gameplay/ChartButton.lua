@@ -4,7 +4,7 @@ local flux = require "flux"
 local ChartButton = {}
 ChartButton.__index = ChartButton
 
-function ChartButton.new(button, tileX)
+function ChartButton.newSingleButton(button, tileX, forRapper)
     local self = setmetatable({}, ChartButton)
     self.button = button
     self.tileX = tileX
@@ -13,9 +13,15 @@ function ChartButton.new(button, tileX)
     self.width = 1
     self.height = 1
     self.scale = 0.75
-    self.colour = {1, 1, 1, 0.75}
+    self.colour = {1, 1, 1, 0}
     self.additive = 0
+    self.forRapper = forRapper
     return self
+end
+
+function ChartButton.newButton(button, tileX)
+    table.insert(MasterChartButtons, ChartButton.newSingleButton(button, tileX, MasterRapper))
+    table.insert(PlayerChartButtons, ChartButton.newSingleButton(button, tileX, PlayerRapper))
 end
 
 function ChartButton:draw()
@@ -31,7 +37,7 @@ function ChartButton:draw()
         ImagesChartIcons, --Image
         chartIconsSliced[self.button], --Quad
         self.posX + ChartIconSize / 2, --X position
-        ChartYPosition + ChartIconSize / 2, --Y position
+        (ChartYPosition + ChartIconSize / 2) + (self.forRapper.id - 1) * ChartIconSize, --Y position
         0, --Rotation
         self.width * self.scale, --Width
         self.height * self.scale, --Height
@@ -49,7 +55,7 @@ function ChartButton:draw()
 end
 
 function ChartButton:update(dt)
-    if PlayerPosX < self.posX or self.pressedTime > -1 then return end
+    if self.forRapper.x < self.posX or self.pressedTime > -1 then return end
     self.pressedTime = self.pressedTime + 1
 
     self.colour = {1, 1, 1, 1}

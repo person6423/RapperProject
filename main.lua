@@ -8,10 +8,13 @@ MusicTrack = nil
 ChartIconSize = 48
 ChartLength = 16
 ChartXPosition, ChartYPosition = (1280 - (ChartIconSize * ChartLength)) / 2, 30
-ChartButtons = {}
+MasterChartButtons = {}
+PlayerChartButtons = {}
 ChartBar = 0
 
-PlayerPosX = ChartXPosition
+MasterRapper = nil
+PlayerRapper = nil
+RapperTurn = 1
 
 local nextFrame = love.timer.getTime()
 
@@ -31,6 +34,8 @@ function love.load()
     Rapper = require "source.gameplay.Rapper"
     DebugUI = require "source.ui.DebugUI"
 
+    MasterRapper = Rapper.new(1, 1)
+    PlayerRapper = Rapper.new(2, 2)
     Chart.refreshChart()
 
     MusicTrack:play()
@@ -38,8 +43,10 @@ end
 
 function love.draw()
     Chart.draw()
-    for _, i in ipairs(ChartButtons) do i:draw() end
-    Rapper.draw()
+    for _, i in ipairs(MasterChartButtons) do i:draw() end
+    for _, i in ipairs(PlayerChartButtons) do i:draw() end
+    MasterRapper:draw()
+    PlayerRapper:draw()
     DebugUI.draw()
 
     local now = love.timer.getTime()
@@ -51,8 +58,10 @@ function love.draw()
 end
 
 function love.update(dt)
-    for _, i in ipairs(ChartButtons) do i:update(dt) end
-    Rapper.update(dt)
+    for _, i in ipairs(MasterChartButtons) do i:update(dt) end
+    for _, i in ipairs(PlayerChartButtons) do i:update(dt) end
+    MasterRapper:update(dt)
+    PlayerRapper:update(dt)
     flux.update(dt)
     nextFrame = nextFrame + 1 / TargetFPS
 end
