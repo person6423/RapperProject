@@ -1,4 +1,5 @@
 local PersonsLoveLib = require "libraries.PersonsLoveLib"
+local Assets = require "source.misc.Assets"
 
 local Chart = {}
 
@@ -33,21 +34,20 @@ function Chart.refreshChart()
 end
 
 function Chart.drawChart(rapper)
-    local chartIconsSliced = PersonsLoveLib.sliceSheet(ImagesChartIcons, ChartIconSize, ChartIconSize)
     local Yposition = ChartYPosition + (rapper.id - 1) * ChartIconSize
 
     for i = 0, ChartLength - 1 do
-        local ClipToUse = chartIconsSliced[7]
+        local ClipToUse = Assets.quads.ChartIcons[7]
         local IconX = Chart.getChartIconPixelX(i)
         if (i) % 4 == 0 then
-            ClipToUse = chartIconsSliced[8]
+            ClipToUse = Assets.quads.ChartIcons[8]
         end
 
-        love.graphics.draw(ImagesChartIcons, ClipToUse, IconX, Yposition)
+        love.graphics.draw(Assets.images.ChartIcons, ClipToUse, IconX, Yposition)
 
         if IconX < rapper.x then
             love.graphics.setBlendMode("add")
-            love.graphics.draw(ImagesChartIcons, ClipToUse, IconX, Yposition)
+            love.graphics.draw(Assets.images.ChartIcons, ClipToUse, IconX, Yposition)
             love.graphics.setBlendMode("alpha")
         end
     end

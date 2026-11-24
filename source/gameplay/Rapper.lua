@@ -1,7 +1,6 @@
-local AssetLib = require "libraries.PersonsLoveLib"
-local flux = require "libraries.flux"
-
-local BPM = 102
+local PersonsLoveLib = require "libraries.PersonsLoveLib"
+local Music = require "source.gameplay.Music"
+local Assets = require "source.misc.Assets"
 
 local Rapper = {}
 Rapper.__index = Rapper
@@ -10,29 +9,26 @@ function Rapper.new(icon, id)
     local self = setmetatable({}, Rapper)
     self.icon = icon
     self.id = id
-    self.x = ChartXPosition - 4 * ChartIconSize
+    self.x = RapperStartingPos
     self.movingToStart = false
     return self
 end
 
 function Rapper:draw()
-    if self.x == ChartXPosition - 4 * ChartIconSize and self.movingToStart == false then return end
+    if self.x == RapperStartingPos and self.movingToStart == false then return end
 
-    local rapperIconsSliced = AssetLib.sliceSheet(ImagesRapperIcons, ChartIconSize, ChartIconSize)
-    love.graphics.draw(ImagesRapperIcons, rapperIconsSliced[self.icon], self.x, ChartYPosition + (self.id - 1) * ChartIconSize)
+    love.graphics.draw(Assets.images.RapperIcons, Assets.quads.RapperIcons[self.icon], self.x, ChartYPosition + (self.id - 1) * ChartIconSize)
 end
 
 function Rapper:update(dt)
     local oldChartBar = ChartBar
-    local songTime = MusicTrack:tell("seconds")
-    local beat = songTime * BPM / 60
-    ChartBar = math.floor(beat / 4)
-    local barProgress = (beat % 4) / 4
+    ChartBar = math.floor(Music.currentBeat / 4)
+    local barProgress = (Music.currentBeat % 4) / 4
 
     if self.id == RapperTurn then
         self.x = ChartXPosition + barProgress * (ChartIconSize * ChartLength)
     else
-        self.x = ChartXPosition - 4 * ChartIconSize
+        self.x = RapperStartingPos
     end
 
     if barProgress > 0.75 then

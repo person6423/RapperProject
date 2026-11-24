@@ -1,5 +1,6 @@
 local PersonsLoveLib = require "libraries.PersonsLoveLib"
 local flux = require "libraries.flux"
+local Assets = require "source.misc.Assets"
 
 local ChartButton = {}
 ChartButton.__index = ChartButton
@@ -25,8 +26,6 @@ function ChartButton.newButton(button, tileX)
 end
 
 function ChartButton:draw()
-    local chartIconsSliced = PersonsLoveLib.sliceSheet(ImagesChartIcons, ChartIconSize, ChartIconSize)
-
     for draws = 1, 2 do
         love.graphics.setColor(self.colour[1], self.colour[2], self.colour[3], self.colour[4])
         if draws > 1 then
@@ -34,8 +33,8 @@ function ChartButton:draw()
             love.graphics.setBlendMode("add")
         end
         love.graphics.draw(
-        ImagesChartIcons, --Image
-        chartIconsSliced[self.button], --Quad
+        Assets.images.ChartIcons, --Image
+        Assets.quads.ChartIcons[self.button], --Quad
         self.posX + ChartIconSize / 2, --X position
         (ChartYPosition + ChartIconSize / 2) + (self.forRapper.id - 1) * ChartIconSize, --Y position
         0, --Rotation
