@@ -1,4 +1,3 @@
-local PersonsLoveLib = require "libraries.PersonsLoveLib"
 local flux = require "libraries.flux"
 local Assets = require "source.misc.Assets"
 

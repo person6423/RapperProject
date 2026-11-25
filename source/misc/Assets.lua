@@ -9,7 +9,9 @@ local function baseName(name)
 end
 
 function Assets.loadAssetGroup(groupName)
-    local group = assert(manifest[groupName], "no such asset group: " .. groupName)
+    print("Loading asset group: " .. groupName)
+    local loadSuccessful = true
+    local group = assert(manifest[groupName], "Asset Group does not exist: " .. groupName)
 
     for _, a in ipairs(group.assets) do
     
@@ -23,7 +25,7 @@ function Assets.loadAssetGroup(groupName)
         elseif path:match("%.png$") then
 
             local img = love.graphics.newImage(path)
-            Assets.images[key] = love.graphics.newImage(path)
+            Assets.images[key] = img
 
             if a.rows or a.cols then
                 local rows, cols = a.rows or 1, a.cols or 1
@@ -32,6 +34,10 @@ function Assets.loadAssetGroup(groupName)
             end
 
         end
+    end
+
+    if loadSuccessful then
+        print("Load successful! : " .. groupName)
     end
 end
 

@@ -1,5 +1,10 @@
 local PersonsLoveLib = {}
 
+print("--------------------------------------")
+print("PersonsLoveLib is installed & working!")
+print("--------------------------------------")
+print()
+
 function PersonsLoveLib.sliceSheet(image, fw, fh)
     local quads = {}
     for y = 0, image:getHeight() - fh, fh do

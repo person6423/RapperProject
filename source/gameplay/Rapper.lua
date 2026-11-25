@@ -1,4 +1,3 @@
-local PersonsLoveLib = require "libraries.PersonsLoveLib"
 local Music = require "source.gameplay.Music"
 local Assets = require "source.misc.Assets"
 

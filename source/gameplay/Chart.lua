@@ -1,4 +1,3 @@
-local PersonsLoveLib = require "libraries.PersonsLoveLib"
 local Assets = require "source.misc.Assets"
 
 local Chart = {}

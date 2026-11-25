@@ -2,6 +2,10 @@ local flux = require "libraries.flux"
 
 TargetFPS = 60
 
+MusicTrack = "EverythingIsNothing"
+
+StageID = 67
+
 ChartIconSize = 48
 ChartLength = 16
 ChartXPosition, ChartYPosition = (1280 - (ChartIconSize * ChartLength)) / 2, 30
@@ -21,9 +25,8 @@ function love.load()
     love.graphics.setDefaultFilter("linear", "linear")
 
     Assets = require "source.misc.Assets"
-
     Assets.loadAssetGroup("Chart")
-    Assets.loadAssetGroup("StageTest")
+    Assets.loadAssetGroup("Stage" .. StageID)
 
     Music = require "source.gameplay.Music"
     Chart = require "source.gameplay.Chart"
@@ -35,10 +38,15 @@ function love.load()
     PlayerRapper = Rapper.new(2, 2)
     Chart.refreshChart()
 
+    Music.songAsset = Assets.audio.EverythingIsNothing
     Assets.audio.EverythingIsNothing:play()
 end
 
 function love.draw()
+    love.graphics.setColor(0.025, 0.05, 0.1, 1)
+    love.graphics.rectangle("fill", 0, 0, 1280, 720)
+    love.graphics.setColor(1, 1, 1, 1)
+
     Chart.draw()
     for _, i in ipairs(MasterChartButtons) do i:draw() end
     for _, i in ipairs(PlayerChartButtons) do i:draw() end
