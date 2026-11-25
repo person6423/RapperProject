@@ -20,7 +20,10 @@ function Assets.loadAssetGroup(groupName)
 
         if path:match("%.wav$") then
         
-            Assets.audio[key] = love.audio.newSource(path, a.audioType or "static")
+            local aud = love.audio.newSource(path, a.audioType or "static")
+            Assets.audio[key] = aud
+
+            aud:setLooping(a.looping or false)
 
         elseif path:match("%.png$") then
 

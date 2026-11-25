@@ -6,7 +6,9 @@ function Chart.getChartIconPixelX(ChartTileX)
     return ChartXPosition + (ChartTileX * ChartIconSize)
 end
 
-function Chart.refreshChart()
+function Chart.initializeChart(refreshing)
+    print((refreshing and "Refreshing" or "Initializing") .. " chart...")
+
     for i = #MasterChartButtons, 1, -1 do
         table.remove(MasterChartButtons, i)
     end
@@ -14,22 +16,34 @@ function Chart.refreshChart()
         table.remove(PlayerChartButtons, i)
     end
 
-    if ChartBar % 4 == 0 then
-        ChartButton.newButton(1, 0)
-        ChartButton.newButton(2, 2)
-        ChartButton.newButton(3, 4)
-        ChartButton.newButton(4, 6)
-        ChartButton.newButton(5, 8)
-        ChartButton.newButton(6, 11)
-    elseif ChartBar % 4 == 2 then
-        ChartButton.newButton(4, 0)
-        ChartButton.newButton(3, 2)
-        ChartButton.newButton(2, 4)
-        ChartButton.newButton(1, 6)
-        ChartButton.newButton(5, 8)
-        ChartButton.newButton(6, 10)
-        ChartButton.newButton(5, 11)
+    local stageData = love.filesystem.load("source/stageData/Stage" .. StageID .. "/StageData" .. StageID .. ".lua")()
+
+    for _, barTable in ipairs(stageData.chart) do --loop through every bar
+
+        for __, chartBars in pairs(barTable.chartBars) do -- loop through every chartbars item in bar
+
+            if chartBars == ChartBar then -- if chartbars item is the current chart bar
+
+                for _, noteTable in ipairs(barTable.notes) do -- loop through every note in bar
+                    ChartButton.newButton(noteTable.type, noteTable.tileX)
+                end
+
+                break -- stop loop
+            end
+
+        end
+
     end
+
+    if refreshing then return end
+
+    Music.bpm = 60
+    Music.songAsset = nil
+
+    Music.bpm = stageData.bpm
+    Music.songAsset = stageData.songAsset
+
+    Music.songAsset:play()
 end
 
 function Chart.drawChart(rapper)

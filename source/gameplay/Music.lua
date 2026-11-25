@@ -1,7 +1,7 @@
 local Music = {}
 
 Music.songAsset = nil
-Music.bpm = 102
+Music.bpm = 0
 Music.songTime = 0
 Music.beat = 0
 Music.currentBeat = 0

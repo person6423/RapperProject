@@ -2,9 +2,7 @@ local flux = require "libraries.flux"
 
 TargetFPS = 60
 
-MusicTrack = "EverythingIsNothing"
-
-StageID = 67
+StageID = 21
 
 ChartIconSize = 48
 ChartLength = 16
@@ -36,10 +34,7 @@ function love.load()
 
     MasterRapper = Rapper.new(1, 1)
     PlayerRapper = Rapper.new(2, 2)
-    Chart.refreshChart()
-
-    Music.songAsset = Assets.audio.EverythingIsNothing
-    Assets.audio.EverythingIsNothing:play()
+    Chart.initializeChart(false)
 end
 
 function love.draw()

@@ -51,7 +51,7 @@ function Rapper:update(dt)
         if RapperTurn == 2 then
             MasterRapper.movingToStart = false
             ChartPlayerButtonsFadeInCounter = -1
-            Chart.refreshChart()
+            Chart.initializeChart(true)
             RapperTurn = 1
         else
             PlayerRapper.movingToStart = false

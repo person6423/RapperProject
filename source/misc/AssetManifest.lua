@@ -6,10 +6,10 @@ return {
             { name = "RapperIcons.png", cols = 2 },
         },
     },
-    Stage67 = {
-        path = "audio/Stage67/",
+    Stage21 = {
+        path = "audio/Stage21/",
         assets = {
-            { name = "EverythingIsNothing.wav", audioType = "stream", looping = true },
+            { name = "CheepCheepTheCookingChickensRap.wav", audioType = "stream", looping = true },
         },
     },
 }

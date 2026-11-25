@@ -11,9 +11,10 @@ function DebugUI.draw()
         "FPS: " .. love.timer.getFPS(),
         "",
         "BPM: " .. Music.bpm,
-        "Current Song: " .. MusicTrack,
         "Song Time: " .. Music.songTime,
         "Beat: " .. Music.currentBeat,
+        "",
+        "Chart Bar: " .. ChartBar,
         "",
         "StageID: " .. StageID
     }
