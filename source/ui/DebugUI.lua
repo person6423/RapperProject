@@ -15,6 +15,8 @@ function DebugUI.draw()
         "Beat: " .. Music.currentBeat,
         "",
         "Chart Bar: " .. ChartBar,
+        "Flower Mode: " .. (FlowerMode and "true" or "false"),
+        "Rapper Turn: " .. (RapperTurn == 1 and "Master" or "Player"),
         "",
         "StageID: " .. StageID
     }
