@@ -50,10 +50,10 @@ function Chart.drawChart(rapper)
     local Yposition = ChartYPosition + (rapper.id - 1) * ChartIconSize
 
     for i = 0, ChartLength - 1 do
-        local ClipToUse = Assets.quads.ChartIcons[7]
+        local ClipToUse = Assets.quads.ChartIcons[8]
         local IconX = Chart.getChartIconPixelX(i)
         if (i) % 4 == 0 then
-            ClipToUse = Assets.quads.ChartIcons[8]
+            ClipToUse = Assets.quads.ChartIcons[9]
         end
 
         love.graphics.draw(Assets.images.ChartIcons, ClipToUse, IconX, Yposition)

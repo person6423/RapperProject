@@ -11,6 +11,7 @@ MasterChartButtons = {}
 PlayerChartButtons = {}
 ChartBar = 0
 ChartPlayerButtonsFadeInCounter = -1
+FlowerMode = false
 
 MasterRapper = nil
 PlayerRapper = nil
@@ -34,6 +35,11 @@ function love.load()
 
     MasterRapper = Rapper.new(1, 1)
     PlayerRapper = Rapper.new(2, 2)
+
+    if FlowerMode then
+        print("Flower Mode is ENABLED!")
+    end
+
     Chart.initializeChart(false)
 end
 

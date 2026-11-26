@@ -7,6 +7,10 @@ ChartButton.__index = ChartButton
 function ChartButton.newSingleButton(button, tileX, forRapper)
     local self = setmetatable({}, ChartButton)
     self.button = button
+    self.rotation = 0
+    if FlowerMode then
+        self.button = 7
+    end
     self.tileX = tileX
     self.posX = Chart.getChartIconPixelX(self.tileX)
     self.pressedTime = -1
@@ -36,7 +40,7 @@ function ChartButton:draw()
         Assets.quads.ChartIcons[self.button], --Quad
         self.posX + ChartIconSize / 2, --X position
         (ChartYPosition + ChartIconSize / 2) + (self.forRapper.id - 1) * ChartIconSize, --Y position
-        0, --Rotation
+        self.rotation, --Rotation
         self.width * self.scale, --Width
         self.height * self.scale, --Height
         ChartIconSize / 2, --X Origin
@@ -68,7 +72,11 @@ function ChartButton:update(dt)
     self.additive = 1
     self.scale = 1.75
     flux.to(self, 0.4, {scale = 1, additive = 0}):ease("sineout")
-    flux.to(self, 0.4, {width = -1}):ease("sineinout"):after(self, 0.4, {width = 1}):ease("sineinout")
+    if not FlowerMode then
+        flux.to(self, 0.4, {width = -1}):ease("sineinout"):after(self, 0.4, {width = 1}):ease("sineinout")
+    else
+        flux.to(self, 0.4, {rotation = math.rad(180)}):ease("sineout")
+    end
 end
 
 return ChartButton
