@@ -39,9 +39,11 @@ function Chart.initializeChart(refreshing)
 
     Music.bpm = 60
     Music.songAsset = nil
+    Music.delayInBeats = 0
 
     Music.bpm = stageData.bpm
     Music.songAsset = stageData.songAsset
+    Music.delayInBeats = stageData.delayInBeats
 
     Music.songAsset:play()
 end

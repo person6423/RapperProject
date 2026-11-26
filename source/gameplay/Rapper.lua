@@ -21,8 +21,8 @@ end
 
 function Rapper:update(dt)
     local oldChartBar = ChartBar
-    ChartBar = math.floor(Music.currentBeat / 4)
-    local barProgress = (Music.currentBeat % 4) / 4
+    ChartBar = math.floor((Music.currentBeat - Music.delayInBeats) / 4)
+    local barProgress = ((Music.currentBeat - Music.delayInBeats) % 4) / 4
 
     if self.id == RapperTurn then
         self.x = ChartXPosition + barProgress * (ChartIconSize * ChartLength)

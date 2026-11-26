@@ -48,11 +48,13 @@ function love.draw()
     love.graphics.rectangle("fill", 0, 0, 1280, 720)
     love.graphics.setColor(1, 1, 1, 1)
 
-    Chart.draw()
-    for _, i in ipairs(MasterChartButtons) do i:draw() end
-    for _, i in ipairs(PlayerChartButtons) do i:draw() end
-    MasterRapper:draw()
-    PlayerRapper:draw()
+    if Music.currentBeat >= Music.delayInBeats then
+        Chart.draw()
+        for _, i in ipairs(MasterChartButtons) do i:draw() end
+        for _, i in ipairs(PlayerChartButtons) do i:draw() end
+        MasterRapper:draw()
+        PlayerRapper:draw()
+    end
     DebugUI.draw()
 
     local now = love.timer.getTime()
@@ -68,10 +70,12 @@ function love.update(dt)
         ChartPlayerButtonsFadeInCounter = ChartPlayerButtonsFadeInCounter + 1
     end
     Music.update(dt)
-    for _, i in ipairs(MasterChartButtons) do i:update(dt) end
-    for _, i in ipairs(PlayerChartButtons) do i:update(dt) end
-    MasterRapper:update(dt)
-    PlayerRapper:update(dt)
+    if Music.currentBeat >= Music.delayInBeats then
+        for _, i in ipairs(MasterChartButtons) do i:update(dt) end
+        for _, i in ipairs(PlayerChartButtons) do i:update(dt) end
+        MasterRapper:update(dt)
+        PlayerRapper:update(dt)
+    end
     flux.update(dt)
     nextFrame = nextFrame + 1 / TargetFPS
 end
