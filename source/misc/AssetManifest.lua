@@ -9,7 +9,7 @@ return {
     Stage21 = {
         path = "audio/Stage21/",
         assets = {
-            { name = "CheepCheepTheCookingChickensRap.wav", audioType = "stream", looping = true },
+            { name = "CheepCheepTheCookingChickensRap.ogg", audioType = "stream", looping = true },
         },
     },
 }
